@@ -32,7 +32,8 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
   const [players, setPlayers] = useState(registeredPlayers);
   const [roundNumber, setRoundNumber] = useState(1);
   const [results, setResults] = useState([[{}]]);
-  const [currentPlayers, setCurrentPlayers] = useState(players);
+  const [currentPlayers, setCurrentPlayers] = useState([]);
+  const [points, setPoints] = useState([]);
 
   const handleStartNewGame = () => {
     dispatch(setGameEnded());
@@ -44,10 +45,27 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
     // console.log(noRounds);
     if (roundNumber >= noRounds) {
       onOpen();
-    }
+    } else {
+      // const arr = [
+      //   { name: "asoetuh", id: "nsthaoenu" },
+      //   { name: "saoteuh", id: "sthaoesunt" },
+      // ];
+      // const arrArr = [];
+      // arrArr.push(arr);
+      // console.log(arrArr);
 
-    console.log(players);
+      console.log(players);
+
+      // for (const player of players) {
+      //   arr.push(player.point);
+      // }
+      // setPoints([...points, arr]);
+    }
   };
+
+  useEffect(() => {
+    console.log(players);
+  }, [handleEndRound]);
 
   return (
     <>
@@ -79,7 +97,7 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
         ))}
       </VStack>
 
-      <Center w="full" pos="absolute" bottom="1rem" px="1rem" gap="1rem">
+      <Center w="full" pos="absolute" bottom="2.5rem" px="1rem" gap="1rem">
         <Button
           borderWidth="1px"
           borderColor="gray.500"

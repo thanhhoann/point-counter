@@ -84,14 +84,35 @@ function App() {
         ) : (
           <>
             <Box w="90vw" mx="auto" py="1rem" px="0.5rem" rounded="0.5rem">
+              <FormLabel>Number of rounds</FormLabel>
               <FormControl>
                 <Input
                   type="number"
-                  placeholder="Number of rounds"
                   value={noRounds}
                   onChange={(e) => setNoRounds(e.target.value)}
                 />
               </FormControl>
+              <Divider my="1rem" />
+              <Flex w="full" align="center" gap="1rem" mx="auto">
+                <Button w="full" bg="gray.200" onClick={onOpen}>
+                  <Flex align="center" gap="0.5rem">
+                    <AddIcon w="0.7rem" />
+                    <Text>Add player</Text>
+                  </Flex>
+                </Button>
+
+                <Button
+                  w="full"
+                  bg="green.100"
+                  onClick={handleStartGame}
+                  isDisabled={players.length < 2}
+                >
+                  <Flex align="center" gap="0.5rem">
+                    <CheckIcon w="0.7rem" />
+                    <Text>Start game</Text>
+                  </Flex>
+                </Button>
+              </Flex>
               <Divider my="1rem" />
 
               {players.map((player, index) => (
@@ -111,36 +132,6 @@ function App() {
                 <Text>{players.length}</Text> <BsPeople />
               </Flex>
             </Box>
-
-            <Flex
-              w="90vw"
-              align="center"
-              gap="1rem"
-              pos="absolute"
-              bottom="2rem"
-              left="0"
-              right="0"
-              mx="auto"
-            >
-              <Button w="full" bg="gray.200" onClick={onOpen}>
-                <Flex align="center" gap="0.5rem">
-                  <AddIcon w="0.7rem" />
-                  <Text>Add player</Text>
-                </Flex>
-              </Button>
-
-              <Button
-                w="full"
-                bg="green.100"
-                onClick={handleStartGame}
-                isDisabled={players.length === 0}
-              >
-                <Flex align="center" gap="0.5rem">
-                  <CheckIcon w="0.7rem" />
-                  <Text>Start game</Text>
-                </Flex>
-              </Button>
-            </Flex>
           </>
         )}
       </Box>
@@ -148,25 +139,33 @@ function App() {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent mx="1rem">
-          <ModalHeader>Add player</ModalHeader>
-          <ModalCloseButton />
+          <ModalHeader></ModalHeader>
           <ModalBody>
-            <Input
-              type="text"
-              placeholder="Player's name"
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
-            />
+            <FormControl>
+              <FormLabel w="full" textAlign="center">
+                Player's name
+              </FormLabel>
+              <Input
+                type="text"
+                value={playerName}
+                onChange={(e) => setPlayerName(e.target.value)}
+              />
+            </FormControl>
           </ModalBody>
           <ModalFooter>
             <Button
+              w="full"
+              mx="auto"
               type="submit"
               onClick={() => {
                 handleAddPlayer();
                 onClose();
               }}
             >
-              Save
+              <Flex align="center" gap="0.5rem">
+                <AddIcon w="0.7rem" />
+                <Text>Add player</Text>
+              </Flex>
             </Button>
           </ModalFooter>
         </ModalContent>
