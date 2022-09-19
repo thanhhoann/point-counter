@@ -84,32 +84,28 @@ function App() {
         ) : (
           <>
             <Box w="90vw" mx="auto" py="1rem" px="0.5rem" rounded="0.5rem">
-              <FormLabel>Number of rounds</FormLabel>
-              <FormControl>
+              <FormControl mb="1rem">
+                <FormLabel>Number of rounds</FormLabel>
                 <Input
                   type="number"
                   value={noRounds}
                   onChange={(e) => setNoRounds(e.target.value)}
                 />
               </FormControl>
-              <Divider my="1rem" />
               <Flex w="full" align="center" gap="1rem" mx="auto">
                 <Button w="full" bg="gray.200" onClick={onOpen}>
                   <Flex align="center" gap="0.5rem">
                     <AddIcon w="0.7rem" />
                     <Text>Add player</Text>
-                  </Flex>
-                </Button>
-
-                <Button
-                  w="full"
-                  bg="green.100"
-                  onClick={handleStartGame}
-                  isDisabled={players.length < 2}
-                >
-                  <Flex align="center" gap="0.5rem">
-                    <CheckIcon w="0.7rem" />
-                    <Text>Start game</Text>
+                    <Box>|</Box>
+                    <Flex
+                      color="gray.400"
+                      justify="center"
+                      align="center"
+                      gap="0.5rem"
+                    >
+                      <Text>{players.length}</Text> <BsPeople />
+                    </Flex>
                   </Flex>
                 </Button>
               </Flex>
@@ -122,15 +118,16 @@ function App() {
                   onRemove={handleRemovePlayer}
                 />
               ))}
-
-              <Flex
-                color="gray.400"
-                justify="center"
-                align="center"
-                gap="0.5rem"
+              <Button
+                w="full"
+                bg="green.100"
+                onClick={handleStartGame}
+                isDisabled={players.length < 2}
               >
-                <Text>{players.length}</Text> <BsPeople />
-              </Flex>
+                <Flex align="center" gap="0.5rem">
+                  <Text>START GAME</Text>
+                </Flex>
+              </Button>
             </Box>
           </>
         )}
