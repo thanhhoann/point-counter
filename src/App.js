@@ -83,14 +83,7 @@ function App() {
           />
         ) : (
           <>
-            <Box
-              w="90vw"
-              mx="auto"
-              my="5rem"
-              py="1rem"
-              px="0.5rem"
-              rounded="0.5rem"
-            >
+            <Box w="90vw" mx="auto" py="1rem" px="0.5rem" rounded="0.5rem">
               <FormControl>
                 <Input
                   type="number"
@@ -124,7 +117,7 @@ function App() {
               align="center"
               gap="1rem"
               pos="absolute"
-              bottom="1rem"
+              bottom="2rem"
               left="0"
               right="0"
               mx="auto"
