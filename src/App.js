@@ -65,11 +65,11 @@ function App() {
   return (
     <>
       <Box w="100vw" h="100vh">
-        <Box mx="auto" w="fit-'content" py="1rem" textAlign="center">
+        {/* <Box mx="auto"w py="1rem" textAlign="center">
           <Heading>
             {"<"} Point Counter {">"}
           </Heading>
-        </Box>
+        </Box> */}
 
         {isGameStarted === "STARTED" ? (
           <PointCounterMain
