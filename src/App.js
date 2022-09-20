@@ -129,7 +129,7 @@ function App() {
         )}
       </Box>
 
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <Modal onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent mx="1rem">
           <ModalHeader textAlign="center">
