@@ -84,26 +84,22 @@ function App() {
         ) : (
           <>
             <Box w="90vw" mx="auto" py="1rem" px="0.5rem" rounded="0.5rem">
-              <FormControl mb="1rem">
+              {/* <FormControl mb="1rem">
                 <FormLabel>Number of rounds</FormLabel>
                 <Input
                   type="number"
                   value={noRounds}
                   onChange={(e) => setNoRounds(e.target.value)}
                 />
-              </FormControl>
+              </FormControl> */}
+
               <Flex w="full" align="center" gap="1rem" mx="auto">
                 <Button w="full" bg="gray.200" onClick={onOpen}>
                   <Flex align="center" gap="0.5rem">
                     <AddIcon w="0.7rem" />
                     <Text>Add player</Text>
-                    <Box>|</Box>
-                    <Flex
-                      color="gray.400"
-                      justify="center"
-                      align="center"
-                      gap="0.5rem"
-                    >
+                    <Box color="gray.400">|</Box>
+                    <Flex justify="center" align="center" gap="0.5rem">
                       <Text>{players.length}</Text> <BsPeople />
                     </Flex>
                   </Flex>
@@ -136,12 +132,11 @@ function App() {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent mx="1rem">
-          <ModalHeader></ModalHeader>
+          <ModalHeader textAlign="center">
+            <Heading>Player's name</Heading>
+          </ModalHeader>
           <ModalBody>
             <FormControl>
-              <FormLabel w="full" textAlign="center">
-                Player's name
-              </FormLabel>
               <Input
                 type="text"
                 value={playerName}
