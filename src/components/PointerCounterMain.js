@@ -17,6 +17,7 @@ import {
   ModalCloseButton,
   useDisclosure,
   VStack,
+  Divider,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { setGameEnded } from "../features/gameSlice";
@@ -34,6 +35,7 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
   const [results, setResults] = useState([[{}]]);
   const [currentPlayers, setCurrentPlayers] = useState([]);
   const [points, setPoints] = useState([]);
+  const [wrongPointChange, setWrongPointChange] = useState(false);
 
   const handleStartNewGame = () => {
     dispatch(setGameEnded());
@@ -67,6 +69,16 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
     console.log(players);
   }, [handleEndRound]);
 
+  useEffect(() => {
+    let sum = 0;
+    for (const player of players) {
+      sum += player.point;
+    }
+
+    if (sum !== 0) setWrongPointChange(true);
+    else setWrongPointChange(false);
+  }, [players]);
+
   return (
     <>
       <Center w="full" gap="1rem" mt="1rem" px="2rem">
@@ -89,6 +101,13 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
           New game
         </Button>
       </Center>
+
+      <Center my="1rem" fontWeight="700">
+        <Text w="max-content" minH="1.5rem">
+          {wrongPointChange && "⚠️ Total must equal to 0"}
+        </Text>
+      </Center>
+
       <Box w="full" px="1rem" mt="1rem">
         {players.map((player, index) => (
           <Player
@@ -107,7 +126,7 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
         ))}
       </Box>
 
-      <VStack>
+      {/* <VStack>
         {results.map((result, result_index) => (
           <Flex key={result_index}>
             {result.map((player, player_index) => (
@@ -115,7 +134,7 @@ export default function PointCounterMain({ registeredPlayers, noRounds }) {
             ))}
           </Flex>
         ))}
-      </VStack>
+      </VStack> */}
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

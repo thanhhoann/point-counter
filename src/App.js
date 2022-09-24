@@ -28,6 +28,7 @@ import { BsPeople } from "react-icons/bs";
 import PointCounterMain from "./components/PointerCounterMain";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGameStatus, setGameStarted } from "./features/gameSlice";
+import { motion } from "framer-motion";
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -114,16 +115,25 @@ function App() {
                   onRemove={handleRemovePlayer}
                 />
               ))}
-              <Button
-                w="full"
-                bg="green.100"
-                onClick={handleStartGame}
-                isDisabled={players.length < 2}
-              >
-                <Flex align="center" gap="0.5rem">
-                  <Text>START GAME</Text>
-                </Flex>
-              </Button>
+
+              {players.length >= 2 && (
+                <Button
+                  as={motion.button}
+                  w="full"
+                  bg="green.100"
+                  onClick={handleStartGame}
+                  animate={{
+                    translateY: ["100vh", "0"],
+                  }}
+                  transition={{
+                    duration: 5,
+                  }}
+                >
+                  <Flex align="center" gap="0.5rem">
+                    <Text>START GAME</Text>
+                  </Flex>
+                </Button>
+              )}
             </Box>
           </>
         )}
@@ -175,9 +185,21 @@ function Player({ player, onRemove }) {
 
   return (
     <>
-      <Flex my="1rem" align="center" justify="space-between">
-        <Text>{player.name}</Text>
-        <Button onClick={removePlayer}>
+      <Flex as={motion.box} my="1rem" align="center" justify="space-between">
+        <Text
+          as={motion.box}
+          animate={{ translateX: ["-100vw", "0vw"] }}
+          transition={{ duration: 2, ease: "linear" }}
+        >
+          {player.name}
+        </Text>
+        <Button
+          onClick={removePlayer}
+          as={motion.box}
+          animate={{ translateX: ["100vw", "0vw"] }}
+          transition={{ duration: 2, ease: "linear" }}
+          cursor="pointer"
+        >
           <CloseIcon w="0.7rem" />
         </Button>
       </Flex>
